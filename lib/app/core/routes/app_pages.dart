@@ -19,20 +19,23 @@ class AppPages {
       name: _Paths.HOME,
       page: () => const HomeView(),
       binding: HomeBinding(),
+      transition: Transition.leftToRight,
     ),
     GetPage(
       name: _Paths.REGISTER,
       page: () => const RegisterView(),
       binding: RegisterBinding(),
+      transition: Transition.leftToRight,
     ),
     GetPage(
       name: _Paths.LOGIN,
       page: () => const LoginView(),
       binding: LoginBinding(),
+      transition: Transition.leftToRight,
     ),
     GetPage(
-      name: _Paths.AUTH_HOME,
-      page: () => const AuthHomeView(),
-    ),
+        name: _Paths.AUTH_HOME,
+        page: () => const AuthHomeView(),
+        transition: Transition.leftToRight),
   ];
 }
