@@ -18,7 +18,6 @@ class RegisterView extends GetView<RegisterController> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Column(
-
             children: [
               const SizedBox(
                 height: 30,
@@ -111,9 +110,7 @@ class RegisterView extends GetView<RegisterController> {
                 children: const [
                   Text(
                     'Talents : ',
-                    style: TextStyle(
-                        fontSize: 22
-                    ),
+                    style: TextStyle(fontSize: 22),
                   ),
                 ],
               ),
@@ -123,18 +120,30 @@ class RegisterView extends GetView<RegisterController> {
               SizedBox(
                 height: 200,
                 width: double.infinity,
-                child: GridView.builder(
-                  gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2, childAspectRatio: 3),
-                  itemCount: controller.appTalents.length,
-                  itemBuilder: (_, index) => Obx(() => CheckboxListTile(
-                        title: Text(controller.appTalents[index]),
-                        value: controller.talents
-                            .contains(controller.appTalents[index]),
-                        onChanged: (v) => controller
-                            .toggleTalent(controller.appTalents[index]),
-                      )),
+                child: ValueBuilder<List<String>?>(
+                  initialValue: controller.talents,
+                  onUpdate: (v) => controller.talents = v ?? [],
+                  builder: (value, update) => GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2, childAspectRatio: 3),
+                    itemCount: controller.allTalents.length,
+                    itemBuilder: (_, index) {
+                      final talent = controller.allTalents[index];
+                      return CheckboxListTile(
+                        title: Text(talent),
+                        value: value?.contains(talent),
+                        onChanged: (v) {
+                          if (value?.contains(talent) == true) {
+                            value?.remove(talent);
+                          } else {
+                            value?.add(talent);
+                          }
+                          update(List.of(value ?? []));
+                        },
+                      );
+                    },
+                  ),
                 ),
               ),
               const SizedBox(

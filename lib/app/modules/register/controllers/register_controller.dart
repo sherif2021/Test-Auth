@@ -7,15 +7,14 @@ class RegisterController extends GetxController {
   final _register = Get.find<Register>();
 
   final _isLoading = Rx(false);
-  final _talents = RxList<String>();
 
   bool get isLoading => _isLoading.value;
 
-  List<String> get talents => _talents;
-
   String? name, phone, gender, email, password;
 
-  final appTalents = [
+  List<String> talents = [];
+
+  final allTalents = [
     'Actor',
     'Photographer',
     'Graphic Designer',
@@ -73,14 +72,6 @@ class RegisterController extends GetxController {
             backgroundColor: Colors.green);
       });
       _isLoading.value = false;
-    }
-  }
-
-  void toggleTalent(String talent) {
-    if (_talents.contains(talent)) {
-      _talents.remove(talent);
-    } else {
-      _talents.add(talent);
     }
   }
 
