@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_auth/app/core/failure.dart';
-import 'package:test_auth/app/core/routes/app_pages.dart';
 import 'package:test_auth/app/domain/use_case/register.dart';
 
 class RegisterController extends GetxController {
@@ -15,6 +14,29 @@ class RegisterController extends GetxController {
   List<String> get talents => _talents;
 
   String? name, phone, gender, email, password;
+
+  final appTalents = [
+    'Actor',
+    'Photographer',
+    'Graphic Designer',
+    'Art Director',
+    'Stylist & Fashion',
+    'Makeup Artist',
+    'Football Player',
+    'Journalist',
+    'Model',
+    'Producer',
+    'Director',
+    'Videographer',
+    'Editor',
+    'Singer',
+    'Colorist',
+    'Sound Engineer',
+    'Writer',
+    'Production Manager',
+    'Voice Over',
+    'Other'
+  ];
 
   void register() async {
     String? error;
@@ -51,6 +73,14 @@ class RegisterController extends GetxController {
             backgroundColor: Colors.green);
       });
       _isLoading.value = false;
+    }
+  }
+
+  void toggleTalent(String talent) {
+    if (_talents.contains(talent)) {
+      _talents.remove(talent);
+    } else {
+      _talents.add(talent);
     }
   }
 
