@@ -52,7 +52,7 @@ class RegisterView extends GetView<RegisterController> {
                 height: 30,
               ),
               CustomTextFormFiled(
-                  prefixIcon: const Icon(Icons.email),
+                  prefixIcon: const Icon(Icons.phone),
                   label: 'Phone',
                   keyboardType: TextInputType.phone,
                   onChange: (v) => controller.phone = v),
