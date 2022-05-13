@@ -108,8 +108,8 @@ class RegisterView extends GetView<RegisterController> {
                 height: 30,
               ),
               Row(
-                children: [
-                  const Text(
+                children: const [
+                  Text(
                     'Talents : ',
                     style: TextStyle(
                         fontSize: 22
