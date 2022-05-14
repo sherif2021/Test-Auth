@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:test_auth/app/core/routes/app_pages.dart';
 import 'package:test_auth/app/core/widget/CustomTextFormField.dart';
 import 'package:test_auth/app/core/widget/loading_button.dart';
 import 'package:test_auth/app/modules/register/controllers/register_controller.dart';
@@ -106,54 +107,23 @@ class RegisterView extends GetView<RegisterController> {
               const SizedBox(
                 height: 30,
               ),
-              Row(
-                children: const [
-                  Text(
-                    'Talents : ',
-                    style: TextStyle(fontSize: 22),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              SizedBox(
-                height: 200,
-                width: double.infinity,
-                child: ValueBuilder<List<String>?>(
-                  initialValue: controller.talents,
-                  onUpdate: (v) => controller.talents = v ?? [],
-                  builder: (value, update) => GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, childAspectRatio: 3),
-                    itemCount: controller.allTalents.length,
-                    itemBuilder: (_, index) {
-                      final talent = controller.allTalents[index];
-                      return CheckboxListTile(
-                        title: Text(talent),
-                        value: value?.contains(talent),
-                        onChanged: (v) {
-                          if (value?.contains(talent) == true) {
-                            value?.remove(talent);
-                          } else {
-                            value?.add(talent);
-                          }
-                          update(List.of(value ?? []));
-                        },
-                      );
-                    },
-                  ),
+              MaterialButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Obx(
-                () => LoadingButton(
-                  text: 'Register',
-                  isLoading: controller.isLoading,
-                  onClick: controller.register,
+                color: Theme.of(context).primaryColor,
+                textColor: Colors.white,
+                minWidth: 200,
+                onPressed: () =>
+                    Get.toNamed(Routes.TALENTS, arguments: controller),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15),
+                  child: Text(
+                    'Next',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(

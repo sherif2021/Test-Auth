@@ -1,11 +1,13 @@
 import 'package:get/get.dart';
-import 'package:test_auth/app/modules/auth_home/views/auth_home_view.dart';
-import 'package:test_auth/app/modules/home/bindings/home_binding.dart';
-import 'package:test_auth/app/modules/home/views/home_view.dart';
-import 'package:test_auth/app/modules/login/bindings/login_binding.dart';
-import 'package:test_auth/app/modules/login/views/login_view.dart';
-import 'package:test_auth/app/modules/register/bindings/register_binding.dart';
-import 'package:test_auth/app/modules/register/views/register_view.dart';
+
+import '../../modules/auth_home/views/auth_home_view.dart';
+import '../../modules/home/bindings/home_binding.dart';
+import '../../modules/home/views/home_view.dart';
+import '../../modules/login/bindings/login_binding.dart';
+import '../../modules/login/views/login_view.dart';
+import '../../modules/register/bindings/register_binding.dart';
+import '../../modules/register/views/register_view.dart';
+import '../../modules/register/views/talents_view.dart';
 
 part 'app_routes.dart';
 
@@ -37,5 +39,10 @@ class AppPages {
         name: _Paths.AUTH_HOME,
         page: () => const AuthHomeView(),
         transition: Transition.leftToRight),
+    GetPage(
+      name: _Paths.TALENTS,
+      page: () => TalentsView(controller: Get.arguments),
+      transition: Transition.leftToRight,
+    ),
   ];
 }
